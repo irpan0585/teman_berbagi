@@ -1,0 +1,46 @@
+/* ═══════════════ HALAMAN DERMA ═══════════════ */
+.derma-page { background:#fff; min-height:100vh; padding-top:80px; }
+
+/* Hero: gambar penuh + overlay hijau kanan-bawah */
+.derma-hero { position:relative; width:100%; height:300px; overflow:hidden; }
+.derma-hero img { width:100%; height:100%; object-fit:cover; display:block; }
+.derma-hero-cta {
+  position:absolute; right:0; bottom:0;
+  background:#4f8a3a; color:#fff;
+  font-size:26px; font-weight:700; font-family:inherit;
+  padding:26px 44px;
+  border-radius:16px 0 0 16px;
+  cursor:pointer; border:none;
+  transition:background 0.2s;
+  white-space:nowrap;
+}
+.derma-hero-cta:hover { background:#437a30; }
+
+/* Tab bar */
+.derma-tabs-bar { display:flex; gap:46px; border-bottom:1px solid #e6e6e6; padding:0 40px; }
+.derma-tab { padding:18px 0 14px; font-size:16px; color:#333; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px; transition:color 0.2s, border-color 0.2s; }
+.derma-tab:hover { color:#000; }
+.derma-tab.active { color:#1a1a1a; border-bottom:3px solid #6b9c4d; font-weight:600; }
+
+.derma-tab-content { display:none; padding:34px 40px 70px; }
+.derma-tab-content.active { display:block; }
+
+/* Tentang */
+.derma-text-body p { font-size:15px; color:#2b2b2b; line-height:1.85; margin-bottom:16px; text-align:justify; }
+
+/* Imformasi */
+.derma-info-list { display:flex; flex-direction:column; gap:40px; }
+.derma-info-article { display:grid; grid-template-columns:300px 1fr; gap:34px; align-items:center; }
+.derma-info-article.reverse { grid-template-columns:1fr 300px; }
+.derma-info-article img { width:100%; height:175px; object-fit:cover; border-radius:6px; }
+.derma-info-article p { font-size:15px; color:#2b2b2b; line-height:1.7; text-align:justify; }
+
+/* Dermawan */
+.derma-dermawan-list { display:flex; flex-direction:column; }
+.derma-dermawan-item { display:flex; align-items:center; gap:28px; padding:22px 4px; border-bottom:1px solid #e3e3e3; }
+.derma-dermawan-avatar { width:78px; height:78px; border-radius:50%; background:#d9d9d9; flex-shrink:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.derma-dermawan-avatar svg { width:78px; height:78px; display:block; }
+.derma-dermawan-info { display:flex; flex-direction:column; }
+.derma-dermawan-name { font-size:18px; font-weight:600; color:#1a1a1a; margin-bottom:14px; min-height:26px; }
+.derma-dermawan-type { font-size:14px; color:#8a8a8a; margin-bottom:4px; }
+.derma-dermawan-amount { font-size:16px; font-weight:600; color:#5f8f3f; }

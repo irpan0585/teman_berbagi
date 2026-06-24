@@ -1,0 +1,225 @@
+/* ═══════════════ HALAMAN KEWAJIBAN (layout bersama) ═══════════════ */
+.kewajiban-page { background:#fff; min-height:100vh; padding-top:80px; }
+
+/* Pita coklat membungkus hero */
+.kewajiban-hero-wrap {
+  background:#6e6257; padding:22px;
+  display:grid; grid-template-columns:1.4fr 1fr; gap:22px; align-items:stretch;
+  position: relative;
+}
+
+/* Poster / gambar hero */
+.kewajiban-hero-img { position:relative; border-radius:16px; overflow:hidden; min-height:440px; box-shadow:0 8px 22px rgba(0,0,0,0.28); }
+.kewajiban-hero-img img { width:100%; height:100%; object-fit:cover; }
+.kewajiban-hero-overlay {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; justify-content:space-between; padding:34px 30px;
+}
+.kewajiban-hero-badge {
+  font-size:58px; font-weight:900; line-height:0.98;
+  font-family:'Arial Black','Segoe UI',sans-serif; letter-spacing:-1px;
+  text-shadow:0 2px 10px rgba(0,0,0,0.25);
+}
+.kewajiban-hero-desc { font-size:18px; color:#1d1d1d; line-height:1.45; font-weight:600; text-shadow:0 1px 4px rgba(255,255,255,0.5); }
+
+/* Kartu form putih */
+.kewajiban-form-card { background:#fff; border-radius:22px; padding:34px 30px; display:flex; flex-direction:column; }
+.kewajiban-form-title { font-size:24px; font-weight:700; color:#1a1a1a; margin-bottom:12px; text-align:center; }
+.kewajiban-form-sub { font-size:14px; color:#555; text-align:center; line-height:1.55; margin-bottom:30px; }
+
+.kewajiban-field-label { font-size:14px; color:#7a7a7a; margin-bottom:12px; text-align:center; }
+
+/* Baris counter / input: kotak ikon + kotak isian terpisah */
+.kewajiban-counter-row { display:flex; align-items:stretch; gap:14px; margin-bottom:24px; }
+.kewajiban-icon-box {
+  width:64px; border-radius:12px; background:#cfccc8;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.kewajiban-icon-box.money { background:#cfccc8; }
+
+.kewajiban-counter { flex:1; display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:#f3f3f3; border-radius:12px; }
+.kewajiban-counter-btn { background:none; border:none; cursor:pointer; width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:50%; transition:background 0.15s; padding:0; }
+.kewajiban-counter-btn:hover { background:rgba(0,0,0,0.07); }
+.kewajiban-counter-val { font-size:22px; font-weight:700; color:#1a1a1a; min-width:40px; text-align:center; }
+
+.kewajiban-nominal-row { flex:1; display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:#d8d4cf; border-radius:12px; }
+.kewajiban-nominal-val { font-size:20px; font-weight:600; color:#1a1a1a; }
+.kewajiban-refresh-btn { background:none; border:none; cursor:pointer; padding:6px; border-radius:50%; transition:background 0.15s, transform 0.3s; }
+.kewajiban-refresh-btn:hover { background:rgba(0,0,0,0.07); transform:rotate(180deg); }
+
+/* Input penghasilan (mode persepuluhan) */
+.kewajiban-input-box { flex:1; display:flex; align-items:center; gap:8px; padding:16px 24px; background:#f3f3f3; border-radius:12px; }
+.kib-prefix { font-size:20px; font-weight:600; color:#1a1a1a; }
+.kewajiban-income-input { flex:1; border:none; background:transparent; outline:none; font-size:20px; font-weight:600; color:#1a1a1a; font-family:inherit; min-width:0; }
+.kewajiban-income-input::placeholder { color:#9a9a9a; font-weight:500; }
+
+/* Simulasi persepuluhan */
+.kewajiban-simulasi { background:#eef5ea; border:1px solid #d6e8cd; border-radius:10px; padding:14px 18px; font-size:14px; color:#3a3a3a; text-align:center; line-height:1.6; margin-bottom:4px; }
+.kewajiban-simulasi b { color:#1a1a1a; }
+
+/* Tombol bayar */
+.kewajiban-bayar-btn {
+  display:block; margin:28px auto 0; min-width:60%; padding:14px 40px;
+  background:#4f8a3a; color:#fff; border:none; border-radius:12px;
+  font-size:16px; font-weight:600; cursor:pointer;
+  transition:background 0.2s, transform 0.1s; font-family:inherit;
+}
+.kewajiban-bayar-btn:hover { background:#437a30; }
+.kewajiban-bayar-btn:active { transform:scale(0.98); }
+
+/* Deskripsi di bawah pita coklat */
+.kewajiban-desc-block { max-width:1320px; margin:0 auto; padding:26px 40px 60px; }
+.kewajiban-desc-block p { font-size:15px; color:#2b2b2b; line-height:1.75; text-align:justify; margin-bottom:14px; }
+
+/* ═══════════════ HALAMAN MENU KEWAJIBAN (landing pilih jenis) ═══════════════ */
+.kewmenu-page {
+  background: #f7f4f1;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.kewmenu-header {
+  background: #fff;
+  padding: 36px 48px 28px;
+  border-bottom: 1px solid #e8e2da;
+}
+
+.kewmenu-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  font-family: 'Georgia', serif;
+  letter-spacing: -0.5px;
+}
+
+.kewmenu-sub {
+  font-size: 15px;
+  color: #777;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Grid 3 kartu */
+.kewmenu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 40px 48px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Kartu individual */
+.kewmenu-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  display: flex;
+  flex-direction: column;
+}
+.kewmenu-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+}
+
+/* Gambar hero kartu */
+.kewmenu-card-img {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #6e6257;
+}
+.kewmenu-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.kewmenu-card:hover .kewmenu-card-img img {
+  transform: scale(1.05);
+}
+
+/* Badge besar di atas gambar */
+.kewmenu-card-badge {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 0.95;
+  font-family: 'Arial Black', 'Segoe UI', sans-serif;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+/* Body kartu */
+.kewmenu-card-body {
+  padding: 24px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.kewmenu-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+.kewmenu-card-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 22px;
+}
+.kewmenu-card-desc strong {
+  color: #1a1a1a;
+}
+
+.kewmenu-card-btn {
+  display: block;
+  width: 100%;
+  padding: 13px 0;
+  background: #4f8a3a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.18s, transform 0.1s;
+  letter-spacing: 0.01em;
+}
+.kewmenu-card-btn:hover { background: #437a30; }
+.kewmenu-card-btn:active { transform: scale(0.98); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .kewmenu-grid {
+    grid-template-columns: 1fr;
+    padding: 24px 20px 48px;
+  }
+  .kewmenu-header { padding: 28px 20px 20px; }
+}
+
+/* ═══════════════ DONASI SEIKHLASNYA (Stipendium) ═══════════════ */
+.kewajiban-or-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 22px 0 8px;
+}
+.kewajiban-or-divider::before,
+.kewajiban-or-divider::after {
+  content: ''; flex: 1; height: 1px; background: #e2e2e2;
+}
+.kewajiban-or-divider span {
+  font-size: 12px; font-weight: 700; color: #9a9a9a;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.kewajiban-ikhlas-hint { color: #4f7a35; background: #f1f7ec; border-color: #d9ead0; }

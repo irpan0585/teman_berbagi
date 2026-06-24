@@ -1,0 +1,161 @@
+/* ═══════════════ HALAMAN DONASI — GRID KARTU ═══════════════ */
+.donasi-page { background:#fff; min-height:100vh; padding:104px 40px 60px; }
+.donasi-section-title { font-size:24px; font-weight:700; color:#2b2b2b; margin-bottom:26px; }
+.donasi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+
+.donasi-card {
+  background:#fff; border:1px solid #ececec; border-radius:14px; overflow:hidden;
+  cursor:pointer;
+  transition: transform 0.26s cubic-bezier(0.22,0.61,0.36,1),
+              box-shadow 0.26s cubic-bezier(0.22,0.61,0.36,1),
+              border-color 0.2s ease;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  opacity:0; transform:translateY(24px) scale(0.97);
+  animation:cardFadeUp 0.5s cubic-bezier(0.22,0.61,0.36,1) forwards;
+}
+.donasi-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.14);
+  border-color: #d8d8d8;
+}
+.donasi-card:active { transform: translateY(-2px) scale(0.99); }
+@keyframes cardFadeUp {
+  from { opacity:0; transform:translateY(24px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.donasi-card:nth-child(1){animation-delay:.05s}.donasi-card:nth-child(2){animation-delay:.12s}
+.donasi-card:nth-child(3){animation-delay:.19s}.donasi-card:nth-child(4){animation-delay:.26s}
+.donasi-card:nth-child(5){animation-delay:.33s}.donasi-card:nth-child(6){animation-delay:.40s}
+
+.donasi-card-img { width:100%; height:205px; object-fit:cover; display:block; }
+.donasi-card-body { padding:16px 18px 18px; }
+.donasi-card-top { display:flex; justify-content:space-between; align-items:flex-end; gap:10px; }
+.donasi-card-title { font-size:15px; font-weight:600; color:#1a1a1a; line-height:1.45; flex:1; }
+.donasi-card-hari { font-size:13px; color:#9a9a9a; white-space:nowrap; align-self:flex-end; }
+.donasi-card-hari b { color:#5f8f3f; font-weight:700; margin-left:6px; }
+.donasi-card-divider { height:1px; background:#e6e6e6; margin:12px 0 12px; }
+
+.donasi-progress-label { font-size:13px; color:#8a8a8a; margin-bottom:8px; }
+.donasi-progress-track { height:9px; background:#e9e9e9; border-radius:5px; overflow:hidden; margin-bottom:12px; }
+.donasi-progress-fill {
+  height:100%; background:#6b9c4d; border-radius:5px;
+  transition: width 0.9s cubic-bezier(0.22,0.61,0.36,1);
+}
+
+.donasi-amount-row { display:flex; justify-content:space-between; }
+.amt-col { display:flex; flex-direction:column; }
+.amt-col.right { text-align:right; align-items:flex-end; }
+.amt-label { font-size:13px; color:#8a8a8a; margin-bottom:3px; }
+.amt-val { font-size:14px; font-weight:600; color:#5f8f3f; }
+
+/* ═══════════════ DETAIL DONASI ═══════════════ */
+.detail-page { background:#fff; min-height:100vh; padding-top:80px; }
+
+.detail-hero {
+  background:#6e6257; padding:22px;
+  display:grid; grid-template-columns:1.4fr 1fr; gap:22px; align-items:stretch;
+  position: relative;
+}
+.detail-hero-img-wrap { border-radius:16px; overflow:hidden; box-shadow:0 8px 22px rgba(0,0,0,0.28); min-height:430px; }
+.detail-hero-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+
+.detail-hero-card { background:#fff; border-radius:22px; padding:34px 32px; display:flex; flex-direction:column; }
+.detail-hero-card h2 { font-size:26px; font-weight:700; color:#2b2b2b; line-height:1.3; margin-bottom:30px; }
+.detail-hari-row { text-align:right; font-size:14px; color:#8a8a8a; margin-bottom:8px; }
+.detail-hari-row b { color:#1a1a1a; font-weight:700; margin-left:6px; }
+.detail-divider { height:1px; background:#e2e2e2; margin-bottom:16px; }
+.detail-donasi-label { font-size:14px; color:#8a8a8a; margin-bottom:10px; }
+.detail-progress-track { height:10px; background:#e9e9e9; border-radius:6px; overflow:hidden; margin-bottom:12px; }
+.detail-progress-fill {
+  height:100%; background:#6b9c4d; border-radius:6px;
+  transition: width 1s cubic-bezier(0.22,0.61,0.36,1);
+}
+.detail-amount-row { display:flex; justify-content:space-between; }
+.detail-donate-btn {
+  align-self:center; margin-top:38px;
+  padding:13px 42px; background:#4f8a3a; color:#fff; border:none;
+  border-radius:26px; font-size:15px; font-weight:600; cursor:pointer;
+  transition:background 0.2s, transform 0.1s; font-family:inherit;
+}
+.detail-donate-btn:hover { background:#437a30; }
+.detail-donate-btn:active { transform:scale(0.97); }
+
+/* Tabs */
+.detail-tabs-bar { display:flex; gap:46px; border-bottom:1px solid #e6e6e6; padding:0 40px; margin-top:10px; }
+.detail-tab { padding:18px 0 14px; font-size:16px; color:#333; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px; transition:color 0.2s, border-color 0.2s; }
+.detail-tab:hover { color:#000; }
+.detail-tab.active { color:#1a1a1a; border-bottom:3px solid #6b9c4d; font-weight:600; }
+
+.detail-tab-content { display:none; padding:34px 40px 70px; }
+.detail-tab-content.active { display:block; }
+.detail-text-body p { font-size:15px; color:#3a3a3a; line-height:1.85; margin-bottom:14px; text-align:justify; }
+
+.info-article-list { display:flex; flex-direction:column; gap:40px; }
+.info-article { display:grid; grid-template-columns:300px 1fr; gap:34px; align-items:center; }
+.info-article.reverse { grid-template-columns:1fr 300px; }
+.info-article img { width:100%; height:175px; object-fit:cover; border-radius:6px; }
+.info-article p { font-size:15px; color:#2b2b2b; line-height:1.7; text-align:justify; }
+
+/* Dermawan */
+.dermawan-list { display:flex; flex-direction:column; }
+.dermawan-item { display:flex; align-items:center; gap:28px; padding:22px 4px; border-bottom:1px solid #e3e3e3; }
+.dermawan-avatar { width:78px; height:78px; border-radius:50%; background:#d9d9d9; flex-shrink:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.dermawan-avatar svg { width:78px; height:78px; display:block; }
+.dermawan-info { display:flex; flex-direction:column; }
+.dermawan-name { font-size:18px; font-weight:600; color:#1a1a1a; margin-bottom:14px; }
+.dermawan-type { font-size:14px; color:#8a8a8a; margin-bottom:4px; }
+.dermawan-amount { font-size:16px; font-weight:600; color:#5f8f3f; }
+
+/* ═══════════════ ANIMASI TAB SWITCH SMOOTH ═══════════════ */
+.detail-tab {
+  position: relative;
+  transition: color 0.22s ease, border-color 0.22s ease;
+}
+.detail-tab::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 3px; background: #6b9c4d; border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.28s cubic-bezier(0.22,0.61,0.36,1);
+}
+.detail-tab.active::after { transform: scaleX(1); }
+/* Override border animasi lama */
+.detail-tab { border-bottom: none !important; }
+.detail-tab.active { border-bottom: none !important; }
+
+.detail-tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s cubic-bezier(0.22,0.61,0.36,1),
+              transform 0.3s cubic-bezier(0.22,0.61,0.36,1);
+}
+.detail-tab-content.active {
+  display: block;
+  animation: tabSlideIn 0.3s cubic-bezier(0.22,0.61,0.36,1) both;
+}
+@keyframes tabSlideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════ DONATE BTN SMOOTH ═══════════════ */
+.detail-donate-btn {
+  transition: background 0.22s ease, transform 0.18s cubic-bezier(0.22,0.61,0.36,1),
+              box-shadow 0.22s ease !important;
+}
+.detail-donate-btn:hover {
+  background: #437a30;
+  box-shadow: 0 6px 20px rgba(75,140,60,0.35);
+  transform: translateY(-2px) !important;
+}
+
+/* Nominal button smooth transition */
+.nominal-btn {
+  transition: background 0.2s ease, color 0.2s ease,
+              transform 0.16s cubic-bezier(0.22,0.61,0.36,1),
+              box-shadow 0.2s ease;
+}
+.nominal-btn.active {
+  transform: scale(1.04);
+}

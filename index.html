@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teman Berbagi — Little Things Mean a Lot</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link rel="stylesheet" href="css/tentang.css" />
+  <link rel="stylesheet" href="css/donasi.css" />
+  <link rel="stylesheet" href="css/bayar.css" />
+  <link rel="stylesheet" href="css/kewajiban.css" />
+  <link rel="stylesheet" href="css/sukses.css" />
+  <link rel="stylesheet" href="css/derma.css" />
+  <link rel="stylesheet" href="css/pilar.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/profil.css" />
+</head>
+
+<script>
+  // Force update user display setelah halaman dimuat
+  document.addEventListener('DOMContentLoaded', function () {
+    // Cek apakah ada user yang login
+    const userStr = localStorage.getItem('tb_user');
+    if (userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        console.log('User found on load:', user);
+        console.log('User email:', user.email);
+        // Tunggu sebentar agar DOM siap
+        setTimeout(function () {
+          if (typeof window.forceUpdateUserDisplay === 'function') {
+            window.forceUpdateUserDisplay();
+          }
+          if (typeof window._updateUserDisplay === 'function') {
+            window._updateUserDisplay();
+          }
+          if (typeof window._syncProfileDropdown === 'function') {
+            window._syncProfileDropdown();
+          }
+          // Update email di dropdown dan profil
+          const emailElements = document.querySelectorAll('#profileDdEmail, #profilHeroEmail');
+          emailElements.forEach(el => {
+            if (el && user.email) {
+              el.textContent = user.email;
+              console.log('Set email to:', user.email);
+            }
+          });
+        }, 500);
+      } catch (e) {
+        console.error('Error parsing user:', e);
+      }
+    }
+  });
+</script>
+
+<body>
+
+  <!-- ======== SPLASH ======== -->
+  <div id="splash">
+    <div class="splash-grid"></div>
+    <div class="splash-glow"></div>
+    <div class="splash-logo-wrap">
+      <div class="splash-icon-box">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="3" width="9" height="9" rx="2" fill="white" />
+          <rect x="13" y="3" width="9" height="9" rx="2" fill="white" />
+          <rect x="2" y="14" width="9" height="9" rx="2" fill="white" />
+          <rect x="13" y="14" width="9" height="9" rx="2" fill="white" />
+        </svg>
+      </div>
+      <div class="splash-brand">
+        <div class="splash-brand-name" id="splashBrandName"></div>
+        <div class="splash-brand-tagline">Little things mean a lot</div>
+      </div>
+    </div>
+    <div class="splash-bar-wrap">
+      <div class="splash-bar"></div>
+    </div>
+    <div class="splash-tagline-bottom">Teman Berbagi Kebaikan</div>
+  </div>
+
+  <!-- ======== NAVBAR DARK (auth/info) ======== -->
+  <nav id="mainNav" class="nav-dark">
+    <div class="nav-logo" onclick="showPage('daftar')">
+      <div class="nav-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="3" width="9" height="9" rx="2" fill="white" opacity="0.9" />
+          <rect x="13" y="3" width="9" height="9" rx="2" fill="white" opacity="0.9" />
+          <rect x="2" y="14" width="9" height="9" rx="2" fill="white" opacity="0.9" />
+          <rect x="13" y="14" width="9" height="9" rx="2" fill="white" opacity="0.9" />
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="brand-name">Teman Berbagi</span>
+        <span class="brand-tagline">Little things mean a lot</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link" id="navTentang" onclick="showPage('tentang')">Tentang</span>
+      <span class="nav-link" id="navKontak" onclick="showPage('kontak')">Kontak</span>
+      <span class="nav-btn" onclick="showPage('masuk')">Masuk/Daftar</span>
+    </div>
+  </nav>
+
+  <!-- ======== NAVBAR LIGHT (donasi/kewajiban) ======== -->
+  <nav id="mainNavLight" class="nav-light" style="display:none">
+
+    <!-- Logo (header kiri — selalu terlihat, tidak tertutup saat pencarian) -->
+    <div class="nav-logo-light" onclick="showPage('donasi')">
+      <div class="nav-logo-icon-light">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="3" width="9" height="9" rx="2" fill="#3a2e22" />
+          <rect x="13" y="3" width="9" height="9" rx="2" fill="#3a2e22" />
+          <rect x="2" y="14" width="9" height="9" rx="2" fill="#3a2e22" />
+          <rect x="13" y="14" width="9" height="9" rx="2" fill="#3a2e22" />
+        </svg>
+      </div>
+      <div class="nav-logo-text-light">
+        <span class="brand-name-light">Teman Berbagi</span>
+        <span class="brand-tagline-light">Little things mean a lot</span>
+      </div>
+    </div>
+
+    <!-- Kontainer pil: menu fitur + pencarian inline (membuka ke samping, area fitur saja) -->
+    <div class="nav-light-pill" id="navLightPill">
+      <div class="nav-light-center" id="navLightCenter">
+        <button class="nav-light-link" id="lnDonasi" onclick="navTab(this,'donasi')">Donasi</button>
+        <button class="nav-light-link" id="lnKewajiban" onclick="navTab(this,'menu-kewajiban')">Kewajiban</button>
+        <button class="nav-light-link" id="lnDerma" onclick="navTab(this,'derma')">Derma</button>
+        <button class="nav-light-link" id="lnPilar" onclick="navTab(this,'pilar-kebaikan')">Pilar Kebaikan</button>
+      </div>
+
+      <!-- Pencarian inline: lebar 0 -> membuka ke samping di dalam area fitur -->
+      <div class="nav-inline-search" id="navInlineSearch">
+        <svg class="nis-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3D2314" stroke-width="2.6"
+          stroke-linecap="round">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" class="nis-input" id="searchOverlayInput" placeholder="cari program donasi disini ....."
+          oninput="handleSearch(this.value)" onkeydown="if(event.key==='Escape') closeSearch()" autocomplete="off" />
+        <button class="nis-clear-btn" onclick="closeSearch()" aria-label="Tutup">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#3D2314" stroke-width="3"
+            stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <button class="nav-search-trigger" id="searchTriggerBtn" onclick="openSearch()" aria-label="Cari">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+          stroke-linecap="round">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="nav-light-right">
+      <button class="nav-filter-btn" aria-label="Filter">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6" stroke="#222" stroke-width="1.8" />
+          <line x1="4" y1="12" x2="20" y2="12" stroke="#222" stroke-width="1.8" />
+          <line x1="4" y1="18" x2="20" y2="18" stroke="#222" stroke-width="1.8" />
+          <circle cx="8" cy="6" r="2.2" fill="#fff" stroke="#222" stroke-width="1.8" />
+          <circle cx="16" cy="12" r="2.2" fill="#fff" stroke="#222" stroke-width="1.8" />
+          <circle cx="10" cy="18" r="2.2" fill="#fff" stroke="#222" stroke-width="1.8" />
+        </svg>
+      </button>
+
+      <!-- Profil Button + Dropdown -->
+      <div class="nav-profile-wrap" id="navProfileWrap">
+        <button class="nav-profile-btn" id="navProfileBtn" onclick="toggleProfileDropdown()" aria-label="Profil">
+          <div class="nav-profile-avatar" id="navProfileAvatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D2314" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+          <span class="nav-profile-name" id="navProfileName">Akun</span>
+          <svg class="nav-profile-chevron" id="navProfileChevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="#555" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+
+        <!-- Dropdown Profil -->
+        <div class="profile-dropdown" id="profileDropdown">
+          <!-- Header Info User -->
+          <div class="profile-dropdown-header" id="profileDropdownHeader">
+            <div class="profile-dd-avatar" id="profileDdAvatar">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+              </svg>
+            </div>
+            <div class="profile-dd-info">
+              <span class="profile-dd-name" id="profileDdName">Tamu</span>
+              <span class="profile-dd-email" id="profileDdEmail">Belum login</span>
+            </div>
+          </div>
+
+          <div class="profile-dropdown-divider"></div>
+
+          <!-- Menu Items -->
+          <button class="profile-dd-item" onclick="openProfilePage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            <span>Profil Saya</span>
+          </button>
+
+          <button class="profile-dd-item" onclick="openRiwayatPage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>Riwayat Donasi</span>
+          </button>
+
+          <button class="profile-dd-item" onclick="openPengaturanPage()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <span>Pengaturan</span>
+          </button>
+
+          <div class="profile-dropdown-divider" id="profileLogoutDivider"></div>
+
+          <!-- Login / Logout Button (dinamis) -->
+          <button class="profile-dd-item profile-dd-logout" id="profileAuthBtn" onclick="handleProfileAuth()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" id="profileAuthIcon">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span id="profileAuthLabel">Masuk</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hasil pencarian (turun di bawah navbar, tidak menutupi header) -->
+    <div class="nav-search-results" id="searchResults">
+      <div class="nav-search-results-inner" id="searchResultsInner"></div>
+    </div>
+  </nav>
+
+  <!-- Tombol Kembali sudah dipindah ke dalam nav-light -->
+
+  <!-- ======== PAGE CONTAINERS ======== -->
+  <div id="page-daftar" class="page"></div>
+  <div id="page-masuk" class="page"></div>
+  <div id="page-tentang" class="page"></div>
+  <div id="page-kontak" class="page"></div>
+  <div id="page-donasi" class="page"></div>
+  <div id="page-detail-donasi" class="page"></div>
+  <div id="page-bayar-donasi" class="page"></div>
+  <div id="page-sukses-donasi" class="page"></div>
+  <div id="page-menu-kewajiban" class="page"></div>
+  <div id="page-kewajiban" class="page"></div>
+  <div id="page-bayar-kewajiban" class="page"></div>
+  <div id="page-persepuhan" class="page"></div>
+  <div id="page-bayar-persepuhan" class="page"></div>
+  <div id="page-stipendium" class="page"></div>
+  <div id="page-bayar-stipendium" class="page"></div>
+  <div id="page-derma" class="page"></div>
+  <div id="page-bayar-derma" class="page"></div>
+  <div id="page-pilar-kebaikan" class="page"></div>
+  <div id="page-admin" class="page"></div>
+  <div id="page-profil" class="page"></div>
+
+  <!-- ======== JAVASCRIPT (urutan: api → router → pages) ======== -->
+  <script src="js/api.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/pages/daftar.js"></script>
+  <script src="js/pages/masuk.js"></script>
+  <script src="js/pages/tentang.js"></script>
+  <script src="js/pages/kontak.js"></script>
+  <script src="js/pages/donasi.js"></script>
+  <script src="js/pages/kewajiban.js"></script>
+  <script src="js/pages/derma.js"></script>
+  <script src="js/pages/pilar.js"></script>
+
+  <!-- Admin Panel (modular: core + tiap halaman terpisah) -->
+  <script src="js/pages/admin/core.js"></script>
+  <script src="js/pages/admin/home.js"></script>
+  <script src="js/pages/admin/buat-fanplate.js"></script>
+  <script src="js/pages/admin/kelola-fanplate.js"></script>
+  <script src="js/pages/admin/verifikasi.js"></script>
+  <script src="js/pages/profil.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
